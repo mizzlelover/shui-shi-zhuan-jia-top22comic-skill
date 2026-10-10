@@ -3,62 +3,180 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="谁是专家的 Top22 漫画肖像风格图册：基于同一张个人照片生成的 22 种风格参考图。">
-  <title>谁是专家｜22 种漫画肖像风格卡</title>
+  <meta name="description" content="谁是专家的 Top22 漫画肖像风格图鉴：同一张肖像，沿 22 条独立视觉路线重新表现。">
+  <meta name="theme-color" content="#f4f0e8" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#171411" media="(prefers-color-scheme: dark)">
+  <title>谁是专家｜Top22 漫画肖像图鉴</title>
   <style>
-    :root { color-scheme: light; --ink:#242521; --muted:#70736d; --line:#e6e6df; --paper:#f7f7f2; --accent:#b66b36; }
+    :root {
+      color-scheme:light dark;
+      --paper:#f4f0e8;
+      --surface:#fffdf8;
+      --surface-raised:#ffffff;
+      --ink:#211e1a;
+      --ink-soft:#655d53;
+      --ink-quiet:#786f64;
+      --rule:#ddd4c8;
+      --control-border:#9b8b76;
+      --cinnabar:#a8422b;
+      --cinnabar-wash:#f0e0d8;
+      --focus:#3157a4;
+      --content-max:1440px;
+      --space-1:4px;
+      --space-2:8px;
+      --space-3:12px;
+      --space-4:16px;
+      --space-5:20px;
+      --space-6:24px;
+      --space-8:32px;
+      --space-10:40px;
+      --space-11:44px;
+      --space-12:48px;
+      --space-16:64px;
+      --space-22:88px;
+      --radius-control:12px;
+      --radius-card:16px;
+      --radius-pill:999px;
+      --type-body:17px;
+      --type-secondary:15px;
+      --type-label:15px;
+      --duration-fast:120ms;
+      --duration-standard:220ms;
+      --ease-standard:cubic-bezier(.2,.7,.2,1);
+    }
+    @media (prefers-color-scheme:dark) {
+      :root {
+        color-scheme:dark;
+        --paper:#171411;
+        --surface:#211d19;
+        --surface-raised:#2c2620;
+        --ink:#f2ece5;
+        --ink-soft:#c4baae;
+        --ink-quiet:#aa9f91;
+        --rule:#473c32;
+        --control-border:#8f8171;
+        --cinnabar:#ec866a;
+        --cinnabar-wash:#3e2822;
+        --focus:#9ab4ff;
+      }
+    }
     * { box-sizing:border-box; }
-    body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif; }
-    header { padding:52px max(24px,calc((100vw - 1440px)/2)) 28px; background:#fff; border-bottom:1px solid var(--line); }
-    .eyebrow { margin:0 0 12px; color:var(--accent); font-size:12px; font-weight:700; letter-spacing:.16em; }
-    h1 { margin:0; font-size:clamp(30px,4.5vw,54px); line-height:1.1; letter-spacing:-.04em; }
-    .intro { max-width:720px; margin:14px 0 28px; color:var(--muted); line-height:1.7; }
-    .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Noto Sans CJK SC",sans-serif; }
+    a { color:inherit; }
+    a:focus-visible,button:focus-visible,input:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    header { background:var(--surface); border-bottom:1px solid var(--rule); }
+    .hero { display:grid; grid-template-columns:minmax(0,1.05fr) minmax(340px,.95fr); gap:clamp(var(--space-8),6vw,var(--space-22)); align-items:center; max-width:var(--content-max); margin:0 auto; padding:clamp(var(--space-11),7vw,96px) var(--space-6) clamp(var(--space-12),6vw,80px); }
+    .brandline { margin:0 0 var(--space-10); color:var(--ink-soft); font-size:var(--type-label); font-weight:650; letter-spacing:.04em; }
+    .brandline span { display:inline-block; width:9px; height:9px; margin-right:9px; border-radius:50%; background:var(--cinnabar); }
+    .eyebrow { margin:0 0 var(--space-4); color:var(--cinnabar); font-size:var(--type-label); font-weight:700; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { max-width:740px; margin:0; font-family:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",serif; font-size:clamp(42px,5.8vw,78px); font-weight:600; line-height:1.08; letter-spacing:-.035em; }
+    h1 span { color:var(--cinnabar); }
+    .intro { max-width:620px; margin:22px 0 28px; color:var(--ink-soft); font-size:var(--type-body); line-height:1.7; }
+    .hero-proof { display:flex; align-items:center; gap:var(--space-3); color:var(--ink-quiet); font-size:var(--type-secondary); line-height:1.55; }
+    .hero-proof strong { color:var(--ink); font-family:"Songti SC","Noto Serif CJK SC",serif; font-size:38px; line-height:1; }
+    .hero-art { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--space-3); align-items:start; }
+    .hero-sample { position:relative; display:block; padding:var(--space-1); overflow:hidden; border:1px solid var(--rule); border-radius:120px 120px var(--radius-card) var(--radius-card); background:var(--surface-raised); text-decoration:none; }
+    .hero-sample:nth-child(2),.hero-sample:nth-child(4) { margin-top:42px; }
+    .hero-sample img { display:block; width:100%; height:auto; aspect-ratio:3/4; object-fit:cover; border-radius:inherit; transition:transform var(--duration-standard) var(--ease-standard),opacity 180ms ease-out; }
+    .hero-sample span { position:absolute; right:var(--space-2); bottom:var(--space-2); display:grid; place-items:center; width:28px; height:28px; border-radius:var(--radius-pill); color:var(--surface-raised); background:var(--ink); font-size:12px; font-weight:700; }
+    .hero-sample:hover img { transform:scale(1.025); }
+    .hero-sample:active img,.image-link:active img { opacity:.84; }
+    .archive-nav { display:flex; justify-content:space-between; align-items:center; gap:var(--space-6); max-width:var(--content-max); margin:0 auto; padding:var(--space-5) var(--space-6) var(--space-6); border-top:1px solid var(--rule); }
+    .archive-label { display:flex; flex-direction:column; gap:5px; }
+    .archive-label span { color:var(--cinnabar); font-size:var(--type-label); font-weight:700; letter-spacing:.13em; }
+    .archive-label strong { font-family:"Songti SC","Noto Serif CJK SC",serif; font-size:20px; font-weight:600; }
+    .toolbar { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:8px; align-items:center; }
     input,button { font:inherit; }
-    #search { width:min(380px,100%); padding:11px 14px; border:1px solid var(--line); border-radius:999px; background:#fafaf8; outline:none; }
-    #search:focus { border-color:var(--accent); box-shadow:0 0 0 3px #b66b3620; }
-    .filter { padding:10px 14px; border:1px solid var(--line); border-radius:999px; color:var(--ink); background:#fff; cursor:pointer; }
-    .filter[aria-pressed="true"] { border-color:var(--ink); background:var(--ink); color:#fff; }
-    main { max-width:1440px; margin:0 auto; padding:28px 24px 64px; }
-    .count { margin:0 0 18px; color:var(--muted); font-size:13px; }
-    .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
-    .card { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .search-control { display:flex; flex-direction:column; gap:6px; width:min(330px,100%); }
+    .search-control label { color:var(--ink-soft); font-size:var(--type-secondary); font-weight:650; }
+    #search { width:100%; min-height:var(--space-11); padding:var(--space-3) var(--space-4); border:1px solid var(--control-border); border-radius:var(--radius-control); color:var(--ink); background:var(--surface-raised); }
+    #search::placeholder { color:var(--ink-quiet); }
+    .filter { display:inline-flex; align-items:center; min-height:var(--space-11); padding:var(--space-3) var(--space-4); border:0; border-radius:var(--radius-control); color:var(--ink-soft); background:var(--paper); font-size:var(--type-secondary); cursor:pointer; transition:background-color var(--duration-standard) var(--ease-standard),color var(--duration-standard) var(--ease-standard),transform var(--duration-fast) ease-out; }
+    .filter::before { content:""; display:inline-block; flex:0 0 1em; margin-right:.3em; }
+    .filter:hover { color:var(--ink); background:var(--cinnabar-wash); }
+    .filter:active { transform:scale(.98); opacity:.88; }
+    .filter[aria-pressed="true"] { color:var(--surface-raised); background:var(--cinnabar); }
+    .filter[aria-pressed="true"]::before { content:"✓"; }
+    main { max-width:var(--content-max); margin:0 auto; padding:28px var(--space-6) 72px; }
+    .count { margin:0 0 18px; color:var(--ink-quiet); font-size:var(--type-secondary); }
+    .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:var(--space-5); }
+    .card { overflow:hidden; border:1px solid var(--rule); border-radius:var(--radius-card); background:var(--surface); }
     .card[hidden] { display:none; }
-    .image-link { position:relative; display:block; aspect-ratio:1; overflow:hidden; background:#eee; }
-    .image-link img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
-    .image-link:hover img { transform:scale(1.035); }
-    .number { position:absolute; top:12px; left:12px; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; color:#fff; background:#242521dd; font-size:12px; font-weight:700; }
+    .image-link { position:relative; display:block; aspect-ratio:1; overflow:hidden; background:var(--paper); }
+    .image-link:focus-visible { z-index:1; outline:3px solid var(--focus); outline-offset:-4px; }
+    .image-link img { display:block; width:100%; height:100%; object-fit:cover; transition:transform var(--duration-standard) var(--ease-standard); }
+    .image-link:hover img { transform:scale(1.025); }
+    .number { position:absolute; top:var(--space-3); left:var(--space-3); display:grid; place-items:center; width:34px; height:34px; border-radius:var(--radius-pill); color:var(--surface-raised); background:var(--ink); font-size:var(--type-label); font-weight:700; }
     .copy { padding:16px; }
-    .group { margin:0 0 8px; color:var(--accent); font-size:11px; font-weight:700; letter-spacing:.08em; }
-    h2 { margin:0; font-size:17px; line-height:1.4; }
-    .tags { min-height:40px; margin:7px 0 14px; color:var(--muted); font-size:13px; line-height:1.55; }
-    .open { color:var(--ink); font-size:12px; font-weight:650; text-decoration:none; border-bottom:1px solid #aaa; padding-bottom:2px; }
-    .open:hover { color:var(--accent); border-color:var(--accent); }
-    .empty { display:none; padding:48px 12px; color:var(--muted); text-align:center; }
+    .group { margin:0 0 var(--space-2); color:var(--cinnabar); font-size:var(--type-secondary); font-weight:700; letter-spacing:.04em; }
+    h2 { margin:0; font-family:"Songti SC","Noto Serif CJK SC","Source Han Serif SC",serif; font-size:18px; font-weight:650; line-height:1.4; }
+    .tags { min-height:42px; margin:var(--space-2) 0 14px; color:var(--ink-soft); font-size:var(--type-secondary); line-height:1.55; }
+    .open { display:inline-flex; align-items:center; min-height:var(--space-11); padding:var(--space-2) var(--space-1); color:var(--ink); font-size:var(--type-secondary); font-weight:650; text-decoration-thickness:1px; text-underline-offset:4px; }
+    .open:hover { color:var(--cinnabar); }
+    .open:active { color:var(--cinnabar); opacity:.72; }
+    .empty { display:none; padding:48px 12px; color:var(--ink-soft); text-align:center; }
     .empty.show { display:block; }
-    @media (max-width:1100px) { .grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
-    @media (max-width:720px) { header { padding:36px 20px 24px; } main { padding:22px 16px 48px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; } .copy { padding:12px; } h2 { font-size:15px; } .tags { min-height:56px; font-size:12px; } }
-    @media (max-width:420px) { .grid { grid-template-columns:1fr; } .tags { min-height:0; } }
+    .empty button { min-height:44px; margin-top:14px; padding:10px 16px; border:1px solid var(--control-border); border-radius:12px; color:var(--surface-raised); background:var(--cinnabar); cursor:pointer; }
+    .empty button:hover { filter:brightness(1.08); }
+    .empty button:focus-visible { outline:3px solid var(--focus); outline-offset:3px; }
+    .empty button:active { opacity:.82; }
+    @media (max-width:1120px) { .hero { grid-template-columns:minmax(0,1fr) minmax(280px,.9fr); } .grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (max-width:760px) { .hero { grid-template-columns:1fr; gap:var(--space-8); padding:var(--space-11) var(--space-5) 36px; } .brandline { margin-bottom:28px; } h1 { font-size:clamp(30px,8.5vw,40px); line-height:1.12; } .hero-art { max-width:560px; } .archive-nav { align-items:flex-start; flex-direction:column; padding:var(--space-5); } .toolbar { justify-content:flex-start; width:100%; } #search { width:100%; } main { padding:22px var(--space-5) 56px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--space-3); } .copy { padding:var(--space-3); } h2 { font-size:17px; } .tags { min-height:54px; font-size:var(--type-secondary); } }
+    @media (max-width:440px) { .grid { grid-template-columns:1fr; } .tags { min-height:0; } .hero-art { gap:8px; } .hero-sample:nth-child(2),.hero-sample:nth-child(4) { margin-top:24px; } }
+    @media (prefers-reduced-motion:reduce) {
+      *,*::before,*::after { scroll-behavior:auto !important; animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+      .image-link img,.hero-sample img { transition:opacity 140ms ease-out; }
+      .image-link:hover img,.hero-sample:hover img { transform:none; opacity:.92; }
+      .filter:active { transform:none; opacity:.82; }
+    }
   </style>
 </head>
 <body>
   <header>
-    <p class="eyebrow">谁是专家 · GPT IMAGE 2.5 · 风格档案</p>
-    <h1>22 种漫画肖像风格</h1>
-    <p class="intro">同一张个人照片按原工程每个方向完整的 promptData 字段逐张重新适配生成，保留线条、明暗、造型、配色、纹理/构图、氛围与排除项。按编号浏览、搜索关键词或切换风格组；点击图片可打开原尺寸文件。<a href="references/source-prompt-recipes.md">查看原工程完整字段和值</a>。</p>
-    <div class="toolbar" role="group" aria-label="筛选风格">
-      <input id="search" type="search" placeholder="搜索风格、作品或视觉关键词…" aria-label="搜索风格">
-      <button class="filter" data-filter="全部" aria-pressed="true">全部 22</button>
-      <button class="filter" data-filter="少年 / 青年漫画" aria-pressed="false">少年 / 青年漫画</button>
-      <button class="filter" data-filter="少女 / 女性漫画" aria-pressed="false">少女 / 女性漫画</button>
-    </div>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="hero-copy">
+        <p class="brandline"><span aria-hidden="true"></span>谁是专家　·　视觉档案</p>
+        <p class="eyebrow">TOP22 COMIC PORTRAIT ATLAS</p>
+        <h1 id="page-title">一张肖像，<br><span>二十二种漫画表达。</span></h1>
+        <p class="intro">沿着 22 条独立的视觉路线，重新表现同一张肖像。先看每种效果，再按编号选方向；每张卡片都由完整风格配方单独适配 GPT Image 2.5。</p>
+        <div class="hero-proof"><strong>22</strong><span>种视觉方向<br>一张一张独立生成</span></div>
+      </div>
+      <div class="hero-art" aria-label="四种风格效果预览">
+        <a class="hero-sample" href="style-references-v02-original-prompts/01-araki-jojostyle.png" target="_blank" rel="noreferrer" aria-label="打开 01 荒木飞吕彦方向原图"><img src="style-gallery-previews/01-araki-jojostyle.jpg" width="520" height="520" alt="荒木飞吕彦方向预览" fetchpriority="high"><span>01</span></a>
+        <a class="hero-sample" href="style-references-v02-original-prompts/04-inoue-ink-wash.png" target="_blank" rel="noreferrer" aria-label="打开 04 井上雄彦方向原图"><img src="style-gallery-previews/04-inoue-ink-wash.jpg" width="520" height="520" alt="井上雄彦方向预览"><span>04</span></a>
+        <a class="hero-sample" href="style-references-v02-original-prompts/16-yazawa-punk-fashion.png" target="_blank" rel="noreferrer" aria-label="打开 16 矢泽爱方向原图"><img src="style-gallery-previews/16-yazawa-punk-fashion.jpg" width="520" height="520" alt="矢泽爱方向预览"><span>16</span></a>
+        <a class="hero-sample" href="style-references-v02-original-prompts/20-itagaki-charcoal.png" target="_blank" rel="noreferrer" aria-label="打开 20 板垣巴留方向原图"><img src="style-gallery-previews/20-itagaki-charcoal.jpg" width="520" height="520" alt="板垣巴留方向预览"><span>20</span></a>
+      </div>
+    </section>
+    <section class="archive-nav" aria-label="风格目录工具">
+      <div class="archive-label"><span>THE STYLE ARCHIVE</span><strong>从效果里挑一个方向</strong></div>
+      <div class="toolbar" role="group" aria-label="筛选风格">
+        <div class="search-control">
+          <label for="search">搜索风格</label>
+          <input id="search" type="search" list="style-suggestions" placeholder="试试：水墨、朋克、粉彩…">
+        </div>
+        <datalist id="style-suggestions">
+          <option value="水墨"></option>
+          <option value="朋克"></option>
+          <option value="粉彩"></option>
+          <option value="复古"></option>
+          <option value="暗黑"></option>
+          <option value="电影感"></option>
+          <option value="时装"></option>
+          <option value="赛璐璐"></option>
+        </datalist>
+        <button class="filter" data-filter="全部" aria-pressed="true">全部 22</button>
+        <button class="filter" data-filter="少年 / 青年漫画" aria-pressed="false">少年 / 青年漫画</button>
+        <button class="filter" data-filter="少女 / 女性漫画" aria-pressed="false">少女 / 女性漫画</button>
+      </div>
+    </section>
   </header>
   <main>
     <p class="count" id="count" aria-live="polite"></p>
     <section class="grid" id="grid" aria-label="风格卡片">
       <article class="card" data-group="少年 / 青年漫画" data-search="01 荒木飞吕彦｜jojo 的奇妙冒险 巴洛克波普 · 时装插画 · 青紫撞色">
         <a class="image-link" href="style-references-v02-original-prompts/01-araki-jojostyle.png" target="_blank" rel="noreferrer" aria-label="打开荒木飞吕彦｜JoJo 的奇妙冒险原图">
-          <img src="style-references-v02-original-prompts/01-araki-jojostyle.png" alt="荒木飞吕彦｜JoJo 的奇妙冒险头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/01-araki-jojostyle.jpg" width="520" height="520" alt="荒木飞吕彦｜JoJo 的奇妙冒险头像风格参考图" loading="lazy">
           <span class="number">01</span>
         </a>
         <div class="copy">
@@ -70,7 +188,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="02 尾田荣一郎｜海贼王 弹性线条 · 明亮原色 · 冒险感">
         <a class="image-link" href="style-references-v02-original-prompts/02-oda-adventure.png" target="_blank" rel="noreferrer" aria-label="打开尾田荣一郎｜海贼王原图">
-          <img src="style-references-v02-original-prompts/02-oda-adventure.png" alt="尾田荣一郎｜海贼王头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/02-oda-adventure.jpg" width="520" height="520" alt="尾田荣一郎｜海贼王头像风格参考图" loading="lazy">
           <span class="number">02</span>
         </a>
         <div class="copy">
@@ -82,7 +200,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="03 鸟山明｜龙珠 / 阿拉蕾 几何造型 · 赛璐璐 · 复古轻快">
         <a class="image-link" href="style-references-v02-original-prompts/03-toriyama-retro-shonen.png" target="_blank" rel="noreferrer" aria-label="打开鸟山明｜龙珠 / 阿拉蕾原图">
-          <img src="style-references-v02-original-prompts/03-toriyama-retro-shonen.png" alt="鸟山明｜龙珠 / 阿拉蕾头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/03-toriyama-retro-shonen.jpg" width="520" height="520" alt="鸟山明｜龙珠 / 阿拉蕾头像风格参考图" loading="lazy">
           <span class="number">03</span>
         </a>
         <div class="copy">
@@ -94,7 +212,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="04 井上雄彦｜浪客行 / 灌篮高手 毛笔墨线 · 自然比例 · 水墨大地色">
         <a class="image-link" href="style-references-v02-original-prompts/04-inoue-ink-wash.png" target="_blank" rel="noreferrer" aria-label="打开井上雄彦｜浪客行 / 灌篮高手原图">
-          <img src="style-references-v02-original-prompts/04-inoue-ink-wash.png" alt="井上雄彦｜浪客行 / 灌篮高手头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/04-inoue-ink-wash.jpg" width="520" height="520" alt="井上雄彦｜浪客行 / 灌篮高手头像风格参考图" loading="lazy">
           <span class="number">04</span>
         </a>
         <div class="copy">
@@ -106,7 +224,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="05 三浦建太郎｜烙印战士 暗黑幻想 · 结构排线 · 深红炭黑">
         <a class="image-link" href="style-references-v02-original-prompts/05-miura-dark-fantasy.png" target="_blank" rel="noreferrer" aria-label="打开三浦建太郎｜烙印战士原图">
-          <img src="style-references-v02-original-prompts/05-miura-dark-fantasy.png" alt="三浦建太郎｜烙印战士头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/05-miura-dark-fantasy.jpg" width="520" height="520" alt="三浦建太郎｜烙印战士头像风格参考图" loading="lazy">
           <span class="number">05</span>
         </a>
         <div class="copy">
@@ -118,7 +236,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="06 久保带人｜死神 时装比例 · 黑白留白 · 冷色点缀">
         <a class="image-link" href="style-references-v02-original-prompts/06-kubo-minimal-fashion.png" target="_blank" rel="noreferrer" aria-label="打开久保带人｜死神原图">
-          <img src="style-references-v02-original-prompts/06-kubo-minimal-fashion.png" alt="久保带人｜死神头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/06-kubo-minimal-fashion.jpg" width="520" height="520" alt="久保带人｜死神头像风格参考图" loading="lazy">
           <span class="number">06</span>
         </a>
         <div class="copy">
@@ -130,7 +248,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="07 村田雄介｜一拳超人 精细数字墨线 · 电影感光影">
         <a class="image-link" href="style-references-v02-original-prompts/07-murata-digital-ink.png" target="_blank" rel="noreferrer" aria-label="打开村田雄介｜一拳超人原图">
-          <img src="style-references-v02-original-prompts/07-murata-digital-ink.png" alt="村田雄介｜一拳超人头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/07-murata-digital-ink.jpg" width="520" height="520" alt="村田雄介｜一拳超人头像风格参考图" loading="lazy">
           <span class="number">07</span>
         </a>
         <div class="copy">
@@ -142,7 +260,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="08 贰瓶勉｜blame! / 希德尼娅的骑士 建筑科幻 · 灰蓝空间 · 结构线">
         <a class="image-link" href="style-references-v02-original-prompts/08-nihei-industrial-scifi.png" target="_blank" rel="noreferrer" aria-label="打开贰瓶勉｜Blame! / 希德尼娅的骑士原图">
-          <img src="style-references-v02-original-prompts/08-nihei-industrial-scifi.png" alt="贰瓶勉｜Blame! / 希德尼娅的骑士头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/08-nihei-industrial-scifi.jpg" width="520" height="520" alt="贰瓶勉｜Blame! / 希德尼娅的骑士头像风格参考图" loading="lazy">
           <span class="number">08</span>
         </a>
         <div class="copy">
@@ -154,7 +272,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="09 藤本树｜电锯人 独立电影感 · 松动笔线 · 克制灰调">
         <a class="image-link" href="style-references-v02-original-prompts/09-fujimoto-indie-manga.png" target="_blank" rel="noreferrer" aria-label="打开藤本树｜电锯人原图">
-          <img src="style-references-v02-original-prompts/09-fujimoto-indie-manga.png" alt="藤本树｜电锯人头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/09-fujimoto-indie-manga.jpg" width="520" height="520" alt="藤本树｜电锯人头像风格参考图" loading="lazy">
           <span class="number">09</span>
         </a>
         <div class="copy">
@@ -166,7 +284,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="10 伊藤润二｜漩涡 / 富江 精细黑白 · 冷静凝视 · 强反差">
         <a class="image-link" href="style-references-v02-original-prompts/10-ito-monochrome-horror.png" target="_blank" rel="noreferrer" aria-label="打开伊藤润二｜漩涡 / 富江原图">
-          <img src="style-references-v02-original-prompts/10-ito-monochrome-horror.png" alt="伊藤润二｜漩涡 / 富江头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/10-ito-monochrome-horror.jpg" width="520" height="520" alt="伊藤润二｜漩涡 / 富江头像风格参考图" loading="lazy">
           <span class="number">10</span>
         </a>
         <div class="copy">
@@ -178,7 +296,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="11 石田翠｜东京喰种 锐利墨线 · 水彩边缘 · 紫蓝忧郁">
         <a class="image-link" href="style-references-v02-original-prompts/11-ishida-watercolor.png" target="_blank" rel="noreferrer" aria-label="打开石田翠｜东京喰种原图">
-          <img src="style-references-v02-original-prompts/11-ishida-watercolor.png" alt="石田翠｜东京喰种头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/11-ishida-watercolor.jpg" width="520" height="520" alt="石田翠｜东京喰种头像风格参考图" loading="lazy">
           <span class="number">11</span>
         </a>
         <div class="copy">
@@ -190,7 +308,7 @@
       </article>
       <article class="card" data-group="少年 / 青年漫画" data-search="12 林田球｜异兽魔都 厚重墨线 · 工业朋克 · 泥土色">
         <a class="image-link" href="style-references-v02-original-prompts/12-hayashida-industrial-punk.png" target="_blank" rel="noreferrer" aria-label="打开林田球｜异兽魔都原图">
-          <img src="style-references-v02-original-prompts/12-hayashida-industrial-punk.png" alt="林田球｜异兽魔都头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/12-hayashida-industrial-punk.jpg" width="520" height="520" alt="林田球｜异兽魔都头像风格参考图" loading="lazy">
           <span class="number">12</span>
         </a>
         <div class="copy">
@@ -202,7 +320,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="13 高桥留美子｜犬夜叉 / 乱马½ 圆润亲和 · 轻赛璐璐 · 暖复古">
         <a class="image-link" href="style-references-v02-original-prompts/13-takahashi-retro-comic.png" target="_blank" rel="noreferrer" aria-label="打开高桥留美子｜犬夜叉 / 乱马½原图">
-          <img src="style-references-v02-original-prompts/13-takahashi-retro-comic.png" alt="高桥留美子｜犬夜叉 / 乱马½头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/13-takahashi-retro-comic.jpg" width="520" height="520" alt="高桥留美子｜犬夜叉 / 乱马½头像风格参考图" loading="lazy">
           <span class="number">13</span>
         </a>
         <div class="copy">
@@ -214,7 +332,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="14 武内直子｜美少女战士 飘逸线稿 · 粉彩 · 星月装饰">
         <a class="image-link" href="style-references-v02-original-prompts/14-takeuchi-pastel-fashion.png" target="_blank" rel="noreferrer" aria-label="打开武内直子｜美少女战士原图">
-          <img src="style-references-v02-original-prompts/14-takeuchi-pastel-fashion.png" alt="武内直子｜美少女战士头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/14-takeuchi-pastel-fashion.jpg" width="520" height="520" alt="武内直子｜美少女战士头像风格参考图" loading="lazy">
           <span class="number">14</span>
         </a>
         <div class="copy">
@@ -226,7 +344,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="15 clamp｜百变小樱 / xxxholic 修长剪影 · 紫金幻想 · 精细装饰">
         <a class="image-link" href="style-references-v02-original-prompts/15-clamp-ornate-fantasy.png" target="_blank" rel="noreferrer" aria-label="打开CLAMP｜百变小樱 / xxxHolic原图">
-          <img src="style-references-v02-original-prompts/15-clamp-ornate-fantasy.png" alt="CLAMP｜百变小樱 / xxxHolic头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/15-clamp-ornate-fantasy.jpg" width="520" height="520" alt="CLAMP｜百变小樱 / xxxHolic头像风格参考图" loading="lazy">
           <span class="number">15</span>
         </a>
         <div class="copy">
@@ -238,7 +356,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="16 矢泽爱｜nana / 天堂之吻 时装细线 · 朋克黑红 · 舞台感">
         <a class="image-link" href="style-references-v02-original-prompts/16-yazawa-punk-fashion.png" target="_blank" rel="noreferrer" aria-label="打开矢泽爱｜NANA / 天堂之吻原图">
-          <img src="style-references-v02-original-prompts/16-yazawa-punk-fashion.png" alt="矢泽爱｜NANA / 天堂之吻头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/16-yazawa-punk-fashion.jpg" width="520" height="520" alt="矢泽爱｜NANA / 天堂之吻头像风格参考图" loading="lazy">
           <span class="number">16</span>
         </a>
         <div class="copy">
@@ -250,7 +368,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="17 荒川弘｜钢之炼金术师 扎实中粗线 · 暖色金属 · 坦率有力">
         <a class="image-link" href="style-references-v02-original-prompts/17-arakawa-grounded-manga.png" target="_blank" rel="noreferrer" aria-label="打开荒川弘｜钢之炼金术师原图">
-          <img src="style-references-v02-original-prompts/17-arakawa-grounded-manga.png" alt="荒川弘｜钢之炼金术师头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/17-arakawa-grounded-manga.jpg" width="520" height="520" alt="荒川弘｜钢之炼金术师头像风格参考图" loading="lazy">
           <span class="number">17</span>
         </a>
         <div class="copy">
@@ -262,7 +380,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="18 羽海野千花｜蜂蜜与四叶草 手绘水彩 · 奶油粉蓝 · 温柔感伤">
         <a class="image-link" href="style-references-v02-original-prompts/18-umino-pastel-watercolor.png" target="_blank" rel="noreferrer" aria-label="打开羽海野千花｜蜂蜜与四叶草原图">
-          <img src="style-references-v02-original-prompts/18-umino-pastel-watercolor.png" alt="羽海野千花｜蜂蜜与四叶草头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/18-umino-pastel-watercolor.jpg" width="520" height="520" alt="羽海野千花｜蜂蜜与四叶草头像风格参考图" loading="lazy">
           <span class="number">18</span>
         </a>
         <div class="copy">
@@ -274,7 +392,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="19 安野梦洋子｜恶女花魁 / 魔女的考验 浮世绘波普 · 几何色块 · 鲜明红色">
         <a class="image-link" href="style-references-v02-original-prompts/19-anno-ukiyoe-pop.png" target="_blank" rel="noreferrer" aria-label="打开安野梦洋子｜恶女花魁 / 魔女的考验原图">
-          <img src="style-references-v02-original-prompts/19-anno-ukiyoe-pop.png" alt="安野梦洋子｜恶女花魁 / 魔女的考验头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/19-anno-ukiyoe-pop.jpg" width="520" height="520" alt="安野梦洋子｜恶女花魁 / 魔女的考验头像风格参考图" loading="lazy">
           <span class="number">19</span>
         </a>
         <div class="copy">
@@ -286,7 +404,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="20 板垣巴留｜beastars 炭笔方向笔触 · 戏剧舞台光">
         <a class="image-link" href="style-references-v02-original-prompts/20-itagaki-charcoal.png" target="_blank" rel="noreferrer" aria-label="打开板垣巴留｜BEASTARS原图">
-          <img src="style-references-v02-original-prompts/20-itagaki-charcoal.png" alt="板垣巴留｜BEASTARS头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/20-itagaki-charcoal.jpg" width="520" height="520" alt="板垣巴留｜BEASTARS头像风格参考图" loading="lazy">
           <span class="number">20</span>
         </a>
         <div class="copy">
@@ -298,7 +416,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="21 森薰｜乙嫁语 精细线稿 · 织物纹样 · 沉稳传统色">
         <a class="image-link" href="style-references-v02-original-prompts/21-mori-textile-detail.png" target="_blank" rel="noreferrer" aria-label="打开森薰｜乙嫁语原图">
-          <img src="style-references-v02-original-prompts/21-mori-textile-detail.png" alt="森薰｜乙嫁语头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/21-mori-textile-detail.jpg" width="520" height="520" alt="森薰｜乙嫁语头像风格参考图" loading="lazy">
           <span class="number">21</span>
         </a>
         <div class="copy">
@@ -310,7 +428,7 @@
       </article>
       <article class="card" data-group="少女 / 女性漫画" data-search="22 东村明子｜海月姬 软笔速度线 · 活泼表情 · 轻快配色">
         <a class="image-link" href="style-references-v02-original-prompts/22-higashimura-brush-pen.png" target="_blank" rel="noreferrer" aria-label="打开东村明子｜海月姬原图">
-          <img src="style-references-v02-original-prompts/22-higashimura-brush-pen.png" alt="东村明子｜海月姬头像风格参考图" loading="lazy">
+          <img src="style-gallery-previews/22-higashimura-brush-pen.jpg" width="520" height="520" alt="东村明子｜海月姬头像风格参考图" loading="lazy">
           <span class="number">22</span>
         </a>
         <div class="copy">
@@ -321,7 +439,10 @@
         </div>
       </article>
     </section>
-    <p class="empty" id="empty">没有找到匹配的风格。</p>
+    <div class="empty" id="empty" role="status">
+      <p>没有找到匹配的风格。</p>
+      <button id="clear-search" type="button">查看全部 22 种风格</button>
+    </div>
   </main>
   <script>
     const cards = [...document.querySelectorAll(".card")];
@@ -329,6 +450,7 @@
     const filters = [...document.querySelectorAll(".filter")];
     const count = document.querySelector("#count");
     const empty = document.querySelector("#empty");
+    const clearSearch = document.querySelector("#clear-search");
     let selected = "全部";
     function update() {
       const query = search.value.trim().toLowerCase();
@@ -347,6 +469,13 @@
       update();
     }));
     search.addEventListener("input", update);
+    clearSearch.addEventListener("click", () => {
+      search.value = "";
+      selected = "全部";
+      filters.forEach(item => item.setAttribute("aria-pressed", String(item.dataset.filter === "全部")));
+      update();
+      search.focus();
+    });
     update();
   </script>
 </body>

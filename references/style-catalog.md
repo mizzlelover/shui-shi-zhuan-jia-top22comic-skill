@@ -4,7 +4,7 @@
 
 来源：[mizzlelover/Top22comic](https://github.com/mizzlelover/Top22comic)，检查时 HEAD 为 30e377e816d8e39a70671f482aa2b4c1aece78c8。原工程的完整字段和值逐项保存在[原始 promptData 配方](source-prompt-recipes.md)。V2 效果图按每位作者完整字段分别改写提示并独立生成；上一版使用简写描述，已不再作为本图册效果图。V1 原文件仍保存在 `style-references/` 目录。
 
-可视化总览：[打开 22 种风格图册](../style-gallery.html)。当前图册指向 V2 效果图；点击图片可查看对应原图。
+在线可视化总览：[打开 22 张风格图鉴](../gallery.md)，点击样张可在 GitHub 图片预览中查看原图。本地交互式版本见仓库根目录 `style-gallery.html`。
 
 ## 少年 / 青年漫画方向
 
