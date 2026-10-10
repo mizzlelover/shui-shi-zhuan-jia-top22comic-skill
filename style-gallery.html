@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="谁是专家的 Top22 漫画肖像风格图册：基于同一张个人照片生成的 22 种风格参考图。">
+  <title>谁是专家｜22 种漫画肖像风格卡</title>
+  <style>
+    :root { color-scheme: light; --ink:#242521; --muted:#70736d; --line:#e6e6df; --paper:#f7f7f2; --accent:#b66b36; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB",sans-serif; }
+    header { padding:52px max(24px,calc((100vw - 1440px)/2)) 28px; background:#fff; border-bottom:1px solid var(--line); }
+    .eyebrow { margin:0 0 12px; color:var(--accent); font-size:12px; font-weight:700; letter-spacing:.16em; }
+    h1 { margin:0; font-size:clamp(30px,4.5vw,54px); line-height:1.1; letter-spacing:-.04em; }
+    .intro { max-width:720px; margin:14px 0 28px; color:var(--muted); line-height:1.7; }
+    .toolbar { display:flex; flex-wrap:wrap; gap:10px; align-items:center; }
+    input,button { font:inherit; }
+    #search { width:min(380px,100%); padding:11px 14px; border:1px solid var(--line); border-radius:999px; background:#fafaf8; outline:none; }
+    #search:focus { border-color:var(--accent); box-shadow:0 0 0 3px #b66b3620; }
+    .filter { padding:10px 14px; border:1px solid var(--line); border-radius:999px; color:var(--ink); background:#fff; cursor:pointer; }
+    .filter[aria-pressed="true"] { border-color:var(--ink); background:var(--ink); color:#fff; }
+    main { max-width:1440px; margin:0 auto; padding:28px 24px 64px; }
+    .count { margin:0 0 18px; color:var(--muted); font-size:13px; }
+    .grid { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px; }
+    .card { overflow:hidden; border:1px solid var(--line); border-radius:14px; background:#fff; }
+    .card[hidden] { display:none; }
+    .image-link { position:relative; display:block; aspect-ratio:1; overflow:hidden; background:#eee; }
+    .image-link img { display:block; width:100%; height:100%; object-fit:cover; transition:transform .35s ease; }
+    .image-link:hover img { transform:scale(1.035); }
+    .number { position:absolute; top:12px; left:12px; display:grid; place-items:center; width:34px; height:34px; border-radius:50%; color:#fff; background:#242521dd; font-size:12px; font-weight:700; }
+    .copy { padding:16px; }
+    .group { margin:0 0 8px; color:var(--accent); font-size:11px; font-weight:700; letter-spacing:.08em; }
+    h2 { margin:0; font-size:17px; line-height:1.4; }
+    .tags { min-height:40px; margin:7px 0 14px; color:var(--muted); font-size:13px; line-height:1.55; }
+    .open { color:var(--ink); font-size:12px; font-weight:650; text-decoration:none; border-bottom:1px solid #aaa; padding-bottom:2px; }
+    .open:hover { color:var(--accent); border-color:var(--accent); }
+    .empty { display:none; padding:48px 12px; color:var(--muted); text-align:center; }
+    .empty.show { display:block; }
+    @media (max-width:1100px) { .grid { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (max-width:720px) { header { padding:36px 20px 24px; } main { padding:22px 16px 48px; } .grid { grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; } .copy { padding:12px; } h2 { font-size:15px; } .tags { min-height:56px; font-size:12px; } }
+    @media (max-width:420px) { .grid { grid-template-columns:1fr; } .tags { min-height:0; } }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="eyebrow">谁是专家 · GPT IMAGE 2.5 · 风格档案</p>
+    <h1>22 种漫画肖像风格</h1>
+    <p class="intro">同一张个人照片按原工程每个方向完整的 promptData 字段逐张重新适配生成，保留线条、明暗、造型、配色、纹理/构图、氛围与排除项。按编号浏览、搜索关键词或切换风格组；点击图片可打开原尺寸文件。<a href="references/source-prompt-recipes.md">查看原工程完整字段和值</a>。</p>
+    <div class="toolbar" role="group" aria-label="筛选风格">
+      <input id="search" type="search" placeholder="搜索风格、作品或视觉关键词…" aria-label="搜索风格">
+      <button class="filter" data-filter="全部" aria-pressed="true">全部 22</button>
+      <button class="filter" data-filter="少年 / 青年漫画" aria-pressed="false">少年 / 青年漫画</button>
+      <button class="filter" data-filter="少女 / 女性漫画" aria-pressed="false">少女 / 女性漫画</button>
+    </div>
+  </header>
+  <main>
+    <p class="count" id="count" aria-live="polite"></p>
+    <section class="grid" id="grid" aria-label="风格卡片">
+      <article class="card" data-group="少年 / 青年漫画" data-search="01 荒木飞吕彦｜jojo 的奇妙冒险 巴洛克波普 · 时装插画 · 青紫撞色">
+        <a class="image-link" href="style-references-v02-original-prompts/01-araki-jojostyle.png" target="_blank" rel="noreferrer" aria-label="打开荒木飞吕彦｜JoJo 的奇妙冒险原图">
+          <img src="style-references-v02-original-prompts/01-araki-jojostyle.png" alt="荒木飞吕彦｜JoJo 的奇妙冒险头像风格参考图" loading="lazy">
+          <span class="number">01</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>荒木飞吕彦｜JoJo 的奇妙冒险</h2>
+          <p class="tags">巴洛克波普 · 时装插画 · 青紫撞色</p>
+          <a class="open" href="style-references-v02-original-prompts/01-araki-jojostyle.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="02 尾田荣一郎｜海贼王 弹性线条 · 明亮原色 · 冒险感">
+        <a class="image-link" href="style-references-v02-original-prompts/02-oda-adventure.png" target="_blank" rel="noreferrer" aria-label="打开尾田荣一郎｜海贼王原图">
+          <img src="style-references-v02-original-prompts/02-oda-adventure.png" alt="尾田荣一郎｜海贼王头像风格参考图" loading="lazy">
+          <span class="number">02</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>尾田荣一郎｜海贼王</h2>
+          <p class="tags">弹性线条 · 明亮原色 · 冒险感</p>
+          <a class="open" href="style-references-v02-original-prompts/02-oda-adventure.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="03 鸟山明｜龙珠 / 阿拉蕾 几何造型 · 赛璐璐 · 复古轻快">
+        <a class="image-link" href="style-references-v02-original-prompts/03-toriyama-retro-shonen.png" target="_blank" rel="noreferrer" aria-label="打开鸟山明｜龙珠 / 阿拉蕾原图">
+          <img src="style-references-v02-original-prompts/03-toriyama-retro-shonen.png" alt="鸟山明｜龙珠 / 阿拉蕾头像风格参考图" loading="lazy">
+          <span class="number">03</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>鸟山明｜龙珠 / 阿拉蕾</h2>
+          <p class="tags">几何造型 · 赛璐璐 · 复古轻快</p>
+          <a class="open" href="style-references-v02-original-prompts/03-toriyama-retro-shonen.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="04 井上雄彦｜浪客行 / 灌篮高手 毛笔墨线 · 自然比例 · 水墨大地色">
+        <a class="image-link" href="style-references-v02-original-prompts/04-inoue-ink-wash.png" target="_blank" rel="noreferrer" aria-label="打开井上雄彦｜浪客行 / 灌篮高手原图">
+          <img src="style-references-v02-original-prompts/04-inoue-ink-wash.png" alt="井上雄彦｜浪客行 / 灌篮高手头像风格参考图" loading="lazy">
+          <span class="number">04</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>井上雄彦｜浪客行 / 灌篮高手</h2>
+          <p class="tags">毛笔墨线 · 自然比例 · 水墨大地色</p>
+          <a class="open" href="style-references-v02-original-prompts/04-inoue-ink-wash.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="05 三浦建太郎｜烙印战士 暗黑幻想 · 结构排线 · 深红炭黑">
+        <a class="image-link" href="style-references-v02-original-prompts/05-miura-dark-fantasy.png" target="_blank" rel="noreferrer" aria-label="打开三浦建太郎｜烙印战士原图">
+          <img src="style-references-v02-original-prompts/05-miura-dark-fantasy.png" alt="三浦建太郎｜烙印战士头像风格参考图" loading="lazy">
+          <span class="number">05</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>三浦建太郎｜烙印战士</h2>
+          <p class="tags">暗黑幻想 · 结构排线 · 深红炭黑</p>
+          <a class="open" href="style-references-v02-original-prompts/05-miura-dark-fantasy.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="06 久保带人｜死神 时装比例 · 黑白留白 · 冷色点缀">
+        <a class="image-link" href="style-references-v02-original-prompts/06-kubo-minimal-fashion.png" target="_blank" rel="noreferrer" aria-label="打开久保带人｜死神原图">
+          <img src="style-references-v02-original-prompts/06-kubo-minimal-fashion.png" alt="久保带人｜死神头像风格参考图" loading="lazy">
+          <span class="number">06</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>久保带人｜死神</h2>
+          <p class="tags">时装比例 · 黑白留白 · 冷色点缀</p>
+          <a class="open" href="style-references-v02-original-prompts/06-kubo-minimal-fashion.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="07 村田雄介｜一拳超人 精细数字墨线 · 电影感光影">
+        <a class="image-link" href="style-references-v02-original-prompts/07-murata-digital-ink.png" target="_blank" rel="noreferrer" aria-label="打开村田雄介｜一拳超人原图">
+          <img src="style-references-v02-original-prompts/07-murata-digital-ink.png" alt="村田雄介｜一拳超人头像风格参考图" loading="lazy">
+          <span class="number">07</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>村田雄介｜一拳超人</h2>
+          <p class="tags">精细数字墨线 · 电影感光影</p>
+          <a class="open" href="style-references-v02-original-prompts/07-murata-digital-ink.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="08 贰瓶勉｜blame! / 希德尼娅的骑士 建筑科幻 · 灰蓝空间 · 结构线">
+        <a class="image-link" href="style-references-v02-original-prompts/08-nihei-industrial-scifi.png" target="_blank" rel="noreferrer" aria-label="打开贰瓶勉｜Blame! / 希德尼娅的骑士原图">
+          <img src="style-references-v02-original-prompts/08-nihei-industrial-scifi.png" alt="贰瓶勉｜Blame! / 希德尼娅的骑士头像风格参考图" loading="lazy">
+          <span class="number">08</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>贰瓶勉｜Blame! / 希德尼娅的骑士</h2>
+          <p class="tags">建筑科幻 · 灰蓝空间 · 结构线</p>
+          <a class="open" href="style-references-v02-original-prompts/08-nihei-industrial-scifi.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="09 藤本树｜电锯人 独立电影感 · 松动笔线 · 克制灰调">
+        <a class="image-link" href="style-references-v02-original-prompts/09-fujimoto-indie-manga.png" target="_blank" rel="noreferrer" aria-label="打开藤本树｜电锯人原图">
+          <img src="style-references-v02-original-prompts/09-fujimoto-indie-manga.png" alt="藤本树｜电锯人头像风格参考图" loading="lazy">
+          <span class="number">09</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>藤本树｜电锯人</h2>
+          <p class="tags">独立电影感 · 松动笔线 · 克制灰调</p>
+          <a class="open" href="style-references-v02-original-prompts/09-fujimoto-indie-manga.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="10 伊藤润二｜漩涡 / 富江 精细黑白 · 冷静凝视 · 强反差">
+        <a class="image-link" href="style-references-v02-original-prompts/10-ito-monochrome-horror.png" target="_blank" rel="noreferrer" aria-label="打开伊藤润二｜漩涡 / 富江原图">
+          <img src="style-references-v02-original-prompts/10-ito-monochrome-horror.png" alt="伊藤润二｜漩涡 / 富江头像风格参考图" loading="lazy">
+          <span class="number">10</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>伊藤润二｜漩涡 / 富江</h2>
+          <p class="tags">精细黑白 · 冷静凝视 · 强反差</p>
+          <a class="open" href="style-references-v02-original-prompts/10-ito-monochrome-horror.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="11 石田翠｜东京喰种 锐利墨线 · 水彩边缘 · 紫蓝忧郁">
+        <a class="image-link" href="style-references-v02-original-prompts/11-ishida-watercolor.png" target="_blank" rel="noreferrer" aria-label="打开石田翠｜东京喰种原图">
+          <img src="style-references-v02-original-prompts/11-ishida-watercolor.png" alt="石田翠｜东京喰种头像风格参考图" loading="lazy">
+          <span class="number">11</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>石田翠｜东京喰种</h2>
+          <p class="tags">锐利墨线 · 水彩边缘 · 紫蓝忧郁</p>
+          <a class="open" href="style-references-v02-original-prompts/11-ishida-watercolor.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少年 / 青年漫画" data-search="12 林田球｜异兽魔都 厚重墨线 · 工业朋克 · 泥土色">
+        <a class="image-link" href="style-references-v02-original-prompts/12-hayashida-industrial-punk.png" target="_blank" rel="noreferrer" aria-label="打开林田球｜异兽魔都原图">
+          <img src="style-references-v02-original-prompts/12-hayashida-industrial-punk.png" alt="林田球｜异兽魔都头像风格参考图" loading="lazy">
+          <span class="number">12</span>
+        </a>
+        <div class="copy">
+          <p class="group">少年 / 青年漫画</p>
+          <h2>林田球｜异兽魔都</h2>
+          <p class="tags">厚重墨线 · 工业朋克 · 泥土色</p>
+          <a class="open" href="style-references-v02-original-prompts/12-hayashida-industrial-punk.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="13 高桥留美子｜犬夜叉 / 乱马½ 圆润亲和 · 轻赛璐璐 · 暖复古">
+        <a class="image-link" href="style-references-v02-original-prompts/13-takahashi-retro-comic.png" target="_blank" rel="noreferrer" aria-label="打开高桥留美子｜犬夜叉 / 乱马½原图">
+          <img src="style-references-v02-original-prompts/13-takahashi-retro-comic.png" alt="高桥留美子｜犬夜叉 / 乱马½头像风格参考图" loading="lazy">
+          <span class="number">13</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>高桥留美子｜犬夜叉 / 乱马½</h2>
+          <p class="tags">圆润亲和 · 轻赛璐璐 · 暖复古</p>
+          <a class="open" href="style-references-v02-original-prompts/13-takahashi-retro-comic.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="14 武内直子｜美少女战士 飘逸线稿 · 粉彩 · 星月装饰">
+        <a class="image-link" href="style-references-v02-original-prompts/14-takeuchi-pastel-fashion.png" target="_blank" rel="noreferrer" aria-label="打开武内直子｜美少女战士原图">
+          <img src="style-references-v02-original-prompts/14-takeuchi-pastel-fashion.png" alt="武内直子｜美少女战士头像风格参考图" loading="lazy">
+          <span class="number">14</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>武内直子｜美少女战士</h2>
+          <p class="tags">飘逸线稿 · 粉彩 · 星月装饰</p>
+          <a class="open" href="style-references-v02-original-prompts/14-takeuchi-pastel-fashion.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="15 clamp｜百变小樱 / xxxholic 修长剪影 · 紫金幻想 · 精细装饰">
+        <a class="image-link" href="style-references-v02-original-prompts/15-clamp-ornate-fantasy.png" target="_blank" rel="noreferrer" aria-label="打开CLAMP｜百变小樱 / xxxHolic原图">
+          <img src="style-references-v02-original-prompts/15-clamp-ornate-fantasy.png" alt="CLAMP｜百变小樱 / xxxHolic头像风格参考图" loading="lazy">
+          <span class="number">15</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>CLAMP｜百变小樱 / xxxHolic</h2>
+          <p class="tags">修长剪影 · 紫金幻想 · 精细装饰</p>
+          <a class="open" href="style-references-v02-original-prompts/15-clamp-ornate-fantasy.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="16 矢泽爱｜nana / 天堂之吻 时装细线 · 朋克黑红 · 舞台感">
+        <a class="image-link" href="style-references-v02-original-prompts/16-yazawa-punk-fashion.png" target="_blank" rel="noreferrer" aria-label="打开矢泽爱｜NANA / 天堂之吻原图">
+          <img src="style-references-v02-original-prompts/16-yazawa-punk-fashion.png" alt="矢泽爱｜NANA / 天堂之吻头像风格参考图" loading="lazy">
+          <span class="number">16</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>矢泽爱｜NANA / 天堂之吻</h2>
+          <p class="tags">时装细线 · 朋克黑红 · 舞台感</p>
+          <a class="open" href="style-references-v02-original-prompts/16-yazawa-punk-fashion.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="17 荒川弘｜钢之炼金术师 扎实中粗线 · 暖色金属 · 坦率有力">
+        <a class="image-link" href="style-references-v02-original-prompts/17-arakawa-grounded-manga.png" target="_blank" rel="noreferrer" aria-label="打开荒川弘｜钢之炼金术师原图">
+          <img src="style-references-v02-original-prompts/17-arakawa-grounded-manga.png" alt="荒川弘｜钢之炼金术师头像风格参考图" loading="lazy">
+          <span class="number">17</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>荒川弘｜钢之炼金术师</h2>
+          <p class="tags">扎实中粗线 · 暖色金属 · 坦率有力</p>
+          <a class="open" href="style-references-v02-original-prompts/17-arakawa-grounded-manga.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="18 羽海野千花｜蜂蜜与四叶草 手绘水彩 · 奶油粉蓝 · 温柔感伤">
+        <a class="image-link" href="style-references-v02-original-prompts/18-umino-pastel-watercolor.png" target="_blank" rel="noreferrer" aria-label="打开羽海野千花｜蜂蜜与四叶草原图">
+          <img src="style-references-v02-original-prompts/18-umino-pastel-watercolor.png" alt="羽海野千花｜蜂蜜与四叶草头像风格参考图" loading="lazy">
+          <span class="number">18</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>羽海野千花｜蜂蜜与四叶草</h2>
+          <p class="tags">手绘水彩 · 奶油粉蓝 · 温柔感伤</p>
+          <a class="open" href="style-references-v02-original-prompts/18-umino-pastel-watercolor.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="19 安野梦洋子｜恶女花魁 / 魔女的考验 浮世绘波普 · 几何色块 · 鲜明红色">
+        <a class="image-link" href="style-references-v02-original-prompts/19-anno-ukiyoe-pop.png" target="_blank" rel="noreferrer" aria-label="打开安野梦洋子｜恶女花魁 / 魔女的考验原图">
+          <img src="style-references-v02-original-prompts/19-anno-ukiyoe-pop.png" alt="安野梦洋子｜恶女花魁 / 魔女的考验头像风格参考图" loading="lazy">
+          <span class="number">19</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>安野梦洋子｜恶女花魁 / 魔女的考验</h2>
+          <p class="tags">浮世绘波普 · 几何色块 · 鲜明红色</p>
+          <a class="open" href="style-references-v02-original-prompts/19-anno-ukiyoe-pop.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="20 板垣巴留｜beastars 炭笔方向笔触 · 戏剧舞台光">
+        <a class="image-link" href="style-references-v02-original-prompts/20-itagaki-charcoal.png" target="_blank" rel="noreferrer" aria-label="打开板垣巴留｜BEASTARS原图">
+          <img src="style-references-v02-original-prompts/20-itagaki-charcoal.png" alt="板垣巴留｜BEASTARS头像风格参考图" loading="lazy">
+          <span class="number">20</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>板垣巴留｜BEASTARS</h2>
+          <p class="tags">炭笔方向笔触 · 戏剧舞台光</p>
+          <a class="open" href="style-references-v02-original-prompts/20-itagaki-charcoal.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="21 森薰｜乙嫁语 精细线稿 · 织物纹样 · 沉稳传统色">
+        <a class="image-link" href="style-references-v02-original-prompts/21-mori-textile-detail.png" target="_blank" rel="noreferrer" aria-label="打开森薰｜乙嫁语原图">
+          <img src="style-references-v02-original-prompts/21-mori-textile-detail.png" alt="森薰｜乙嫁语头像风格参考图" loading="lazy">
+          <span class="number">21</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>森薰｜乙嫁语</h2>
+          <p class="tags">精细线稿 · 织物纹样 · 沉稳传统色</p>
+          <a class="open" href="style-references-v02-original-prompts/21-mori-textile-detail.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+      <article class="card" data-group="少女 / 女性漫画" data-search="22 东村明子｜海月姬 软笔速度线 · 活泼表情 · 轻快配色">
+        <a class="image-link" href="style-references-v02-original-prompts/22-higashimura-brush-pen.png" target="_blank" rel="noreferrer" aria-label="打开东村明子｜海月姬原图">
+          <img src="style-references-v02-original-prompts/22-higashimura-brush-pen.png" alt="东村明子｜海月姬头像风格参考图" loading="lazy">
+          <span class="number">22</span>
+        </a>
+        <div class="copy">
+          <p class="group">少女 / 女性漫画</p>
+          <h2>东村明子｜海月姬</h2>
+          <p class="tags">软笔速度线 · 活泼表情 · 轻快配色</p>
+          <a class="open" href="style-references-v02-original-prompts/22-higashimura-brush-pen.png" target="_blank" rel="noreferrer">查看原图 ↗</a>
+        </div>
+      </article>
+    </section>
+    <p class="empty" id="empty">没有找到匹配的风格。</p>
+  </main>
+  <script>
+    const cards = [...document.querySelectorAll(".card")];
+    const search = document.querySelector("#search");
+    const filters = [...document.querySelectorAll(".filter")];
+    const count = document.querySelector("#count");
+    const empty = document.querySelector("#empty");
+    let selected = "全部";
+    function update() {
+      const query = search.value.trim().toLowerCase();
+      let visible = 0;
+      for (const card of cards) {
+        const matches = (selected === "全部" || card.dataset.group === selected) && card.dataset.search.includes(query);
+        card.hidden = !matches;
+        if (matches) visible++;
+      }
+      count.textContent = `显示 ${visible} / 22 种风格`;
+      empty.classList.toggle("show", visible === 0);
+    }
+    filters.forEach(button => button.addEventListener("click", () => {
+      selected = button.dataset.filter;
+      filters.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      update();
+    }));
+    search.addEventListener("input", update);
+    update();
+  </script>
+</body>
+</html>
+
