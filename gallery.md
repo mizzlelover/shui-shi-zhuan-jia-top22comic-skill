@@ -2,6 +2,8 @@
 
 同一张肖像，沿着 22 条独立的视觉路线重新表现。每张卡片展示该方向的实际样张；**点击图片即可打开高分辨率原图**，在 GitHub 的图片预览中放大查看。
 
+> [打开在线交互式图册 →](https://mizzlelover.github.io/shui-shi-zhuan-jia-top22comic-skill/style-gallery.html)（支持搜索和分类筛选）
+
 线上图鉴使用轻量缩略图，完整样张保存在 [`style-references-v02-original-prompts/`](./style-references-v02-original-prompts/)。风格名称和描述可在[完整目录](./references/style-catalog.md)中查看。想调用这些风格时，使用 [`top22comic-image-2-5 Skill`](./SKILL.md)。
 
 ## 少年 / 青年漫画

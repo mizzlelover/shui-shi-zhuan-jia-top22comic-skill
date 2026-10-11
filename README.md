@@ -3,7 +3,9 @@
   <h1>一张肖像，二十二种漫画表达。</h1>
   <p>一个为 Codex 和 GPT Image 2.5 打造的漫画肖像 Skill。<br>沿用 Top22comic 的完整风格配方，让每种方向保有自己的线条、色彩与气质。</p>
   <p>
-    <a href="./gallery.md"><strong>浏览 22 张风格图鉴 →</strong></a>
+    <a href="https://mizzlelover.github.io/shui-shi-zhuan-jia-top22comic-skill/style-gallery.html"><strong>打开在线交互图册 →</strong></a>
+    &nbsp; · &nbsp;
+    <a href="./gallery.md">浏览静态风格图鉴</a>
     &nbsp; · &nbsp;
     <a href="./SKILL.md">查看 Codex Skill</a>
   </p>
@@ -11,7 +13,7 @@
 
 ## 先看 22 种实际效果
 
-每张预览都可以点开对应的高分辨率原图。想看完整视觉描述与交互式浏览，请打开[谁是专家 · 22 张风格图鉴](./gallery.md)。
+每张预览都可以点开对应的高分辨率原图。在线图册支持搜索和分类筛选；也可以打开[静态风格图鉴](./gallery.md)直接浏览。
 
 <p align="center">
   <a href="style-references-v02-original-prompts/01-araki-jojostyle.png"><img src="style-gallery-previews/01-araki-jojostyle.jpg" width="170" alt="01 荒木飞吕彦方向风格样张，点击查看原图"><br><sub>01 荒木飞吕彦</sub></a>
@@ -31,10 +33,10 @@
   <a href="style-references-v02-original-prompts/15-clamp-ornate-fantasy.png"><img src="style-gallery-previews/15-clamp-ornate-fantasy.jpg" width="170" alt="15 CLAMP方向风格样张，点击查看原图"><br><sub>15 CLAMP</sub></a>
   <a href="style-references-v02-original-prompts/16-yazawa-punk-fashion.png"><img src="style-gallery-previews/16-yazawa-punk-fashion.jpg" width="170" alt="16 矢泽爱方向风格样张，点击查看原图"><br><sub>16 矢泽爱</sub></a>
   <a href="style-references-v02-original-prompts/17-arakawa-grounded-manga.png"><img src="style-gallery-previews/17-arakawa-grounded-manga.jpg" width="170" alt="17 荒川弘方向风格样张，点击查看原图"><br><sub>17 荒川弘</sub></a>
-  <a href="style-references-v02-original-prompts/18-umino-watercolor.png"><img src="style-gallery-previews/18-umino-watercolor.jpg" width="170" alt="18 羽海野千花方向风格样张，点击查看原图"><br><sub>18 羽海野千花</sub></a>
+  <a href="style-references-v02-original-prompts/18-umino-pastel-watercolor.png"><img src="style-gallery-previews/18-umino-pastel-watercolor.jpg" width="170" alt="18 羽海野千花方向风格样张，点击查看原图"><br><sub>18 羽海野千花</sub></a>
   <a href="style-references-v02-original-prompts/19-anno-ukiyoe-pop.png"><img src="style-gallery-previews/19-anno-ukiyoe-pop.jpg" width="170" alt="19 安野梦洋子方向风格样张，点击查看原图"><br><sub>19 安野梦洋子</sub></a>
   <a href="style-references-v02-original-prompts/20-itagaki-charcoal.png"><img src="style-gallery-previews/20-itagaki-charcoal.jpg" width="170" alt="20 板垣巴留方向风格样张，点击查看原图"><br><sub>20 板垣巴留</sub></a>
-  <a href="style-references-v02-original-prompts/21-mori-historical-detail.png"><img src="style-gallery-previews/21-mori-historical-detail.jpg" width="170" alt="21 森薰方向风格样张，点击查看原图"><br><sub>21 森薰</sub></a>
+  <a href="style-references-v02-original-prompts/21-mori-textile-detail.png"><img src="style-gallery-previews/21-mori-textile-detail.jpg" width="170" alt="21 森薰方向风格样张，点击查看原图"><br><sub>21 森薰</sub></a>
   <a href="style-references-v02-original-prompts/22-higashimura-brush-pen.png"><img src="style-gallery-previews/22-higashimura-brush-pen.jpg" width="170" alt="22 东村明子方向风格样张，点击查看原图"><br><sub>22 东村明子</sub></a>
 </p>
 
@@ -48,7 +50,7 @@
 
 ## 先看效果，再开始创作
 
-打开[谁是专家 · 22 张风格图鉴](./gallery.md)。GitHub 会把它作为可阅读页面显示；点击任意样张，可在 GitHub 的图片预览中查看原图，不会进入 HTML 源码视图。
+打开[在线交互式风格图册](https://mizzlelover.github.io/shui-shi-zhuan-jia-top22comic-skill/style-gallery.html)，可搜索风格、按类别筛选，并点击卡片查看原图。也可在 GitHub 中阅读[静态风格图鉴](./gallery.md)。
 
 图鉴中的缩略图为便于浏览而压缩的预览，点击后打开对应的高分辨率 PNG。全尺寸样张都基于项目维护者提供的个人肖像生成；仓库不收录原始照片。
 
@@ -72,14 +74,14 @@ gh repo clone mizzlelover/shui-shi-zhuan-jia-top22comic-skill "$HOME/.codex/skil
 | 内容 | 文件 |
 | --- | --- |
 | Codex Skill 规则、风格选择流程和通用降噪约束 | [`SKILL.md`](./SKILL.md) |
-| GitHub 上直接浏览、点击图片查看原图的风格图鉴 | [`gallery.md`](./gallery.md) |
-| 交互式本地图册，支持搜索和分类筛选 | `style-gallery.html`（下载仓库后本地打开） |
+| 在线交互式图册，支持搜索、分类筛选和查看原图 | [打开风格图册](https://mizzlelover.github.io/shui-shi-zhuan-jia-top22comic-skill/style-gallery.html) |
+| GitHub 上直接阅读的静态风格图鉴 | [`gallery.md`](./gallery.md) |
 | 完整风格索引与描述 | [`references/style-catalog.md`](./references/style-catalog.md) |
 | 原工程的完整 `promptData` 配方 | [`references/source-prompt-recipes.md`](./references/source-prompt-recipes.md) |
 | 缩略图预览 | `style-gallery-previews/` |
 | 22 张高分辨率风格样张 | `style-references-v02-original-prompts/` |
 
-GitHub 仓库浏览器会将 `.html` 文件显示为源码，因此在线请从上面的 `gallery.md` 入口浏览；下载完整仓库后，直接用浏览器打开 `style-gallery.html` 可使用搜索和分类筛选。该仓库独立打包 Codex Skill 与图册资源，不包含原 Gemini 应用代码。
+网页已通过 GitHub Pages 在线发布；仓库中的 `gallery.md` 是便于 GitHub 内直接阅读的静态版本。该仓库独立打包 Codex Skill 与图册资源，不包含原 Gemini 应用代码。
 
 <div align="center">
   <sub>谁是专家 · Top22 漫画肖像 Skill · GPT Image 2.5</sub>
